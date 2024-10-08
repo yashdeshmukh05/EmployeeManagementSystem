@@ -28,7 +28,8 @@ public class AppConfig {
                         // the application will operate in stateless mode, meaning each request will need to carry its authentication information
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN") // role based authorization
+                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/api/hr/**").hasAuthority("ROLE_HR")// role based authorization
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
                 )
