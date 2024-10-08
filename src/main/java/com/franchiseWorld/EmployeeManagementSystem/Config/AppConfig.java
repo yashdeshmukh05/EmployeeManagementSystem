@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 @ComponentScan(basePackages = "com.franchiseWorld") // Package containing your controllers, services, and repositories
-//@EntityScan(basePackages = "com.pheonix.UserAuthentication") // Package containing your entity classes
+@EntityScan(basePackages = "com.franchiseWorld.EmployeeManagementSystem.Entity") // Package containing your entity classes
 public class AppConfig {
 
     @Bean
