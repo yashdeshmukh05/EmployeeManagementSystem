@@ -39,10 +39,10 @@ import java.util.List;
         private Long salary;
 
         @OneToOne
-        private Position position_id;
+        private Position position;
 
         @OneToOne
-        private Department Department_id ;
+        private Department department;
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Address> addresses = new ArrayList<>();
