@@ -38,10 +38,10 @@ import java.util.List;
 
         private Long salary;
 
-        @OneToOne
+        @ManyToOne
         private Position position;
 
-        @OneToOne
+        @ManyToOne
         private Department department;
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
