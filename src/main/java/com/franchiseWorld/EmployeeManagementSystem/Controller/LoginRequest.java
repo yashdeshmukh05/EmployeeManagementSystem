@@ -1,4 +1,4 @@
-package com.franchiseWorld.EmployeeManagementSystem.Request;
+package com.franchiseWorld.EmployeeManagementSystem.Controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

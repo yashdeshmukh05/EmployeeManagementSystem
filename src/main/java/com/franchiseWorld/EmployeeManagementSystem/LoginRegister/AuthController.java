@@ -4,7 +4,7 @@ import com.franchiseWorld.EmployeeManagementSystem.Config.JwtTokenProvider;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.*;
 import com.franchiseWorld.EmployeeManagementSystem.Exception.UserException;
 import com.franchiseWorld.EmployeeManagementSystem.Repository.UserRepository;
-import com.franchiseWorld.EmployeeManagementSystem.Request.LoginRequest;
+import com.franchiseWorld.EmployeeManagementSystem.Controller.LoginRequest;
 import com.franchiseWorld.EmployeeManagementSystem.Response.AuthResponse;
 import com.franchiseWorld.EmployeeManagementSystem.Service.CustomUserDetails;
 import jakarta.validation.Valid;
