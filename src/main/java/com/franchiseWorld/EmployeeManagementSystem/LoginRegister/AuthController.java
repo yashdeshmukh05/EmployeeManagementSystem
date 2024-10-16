@@ -4,6 +4,7 @@ import com.franchiseWorld.EmployeeManagementSystem.Config.JwtTokenProvider;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.*;
 import com.franchiseWorld.EmployeeManagementSystem.Exception.UserException;
 import com.franchiseWorld.EmployeeManagementSystem.Repository.UserRepository;
+<<<<<<< HEAD
 import com.franchiseWorld.EmployeeManagementSystem.Controller.LoginRequest;
 import com.franchiseWorld.EmployeeManagementSystem.Response.AuthResponse;
 import com.franchiseWorld.EmployeeManagementSystem.Service.CustomUserDetails;
@@ -15,12 +16,26 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+=======
+import com.franchiseWorld.EmployeeManagementSystem.Response.AuthResponse;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+>>>>>>> EmployeeControllerNew
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> EmployeeControllerNew
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -29,6 +44,7 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
 
+<<<<<<< HEAD
     private CustomUserDetails customUserDetails;
 
     public AuthController(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtTokenProvider jwtTokenProvider,CustomUserDetails customUserDetails) {
@@ -54,18 +70,53 @@ public class AuthController {
 
         // Check if user with the given email already exists
         if (isEmailExist!=null) {
+=======
+
+
+    public AuthController(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtTokenProvider jwtTokenProvider) {
+        this.userRepository=userRepository;
+        this.passwordEncoder=passwordEncoder;
+        this.jwtTokenProvider=jwtTokenProvider;
+
+
+    }
+
+    @PostMapping("/signup/Employee")
+    public ResponseEntity<AuthResponse> createEmployeeHandler(@Valid @RequestBody User user) throws UserException {
+
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        UserRole userRole = UserRole.ROLE_EMPLOYEE;
+        String mobile = user.getMobile();
+        List<Address> address = user.getAddresses();
+        Position position = user.getPosition();
+        Department department = user.getDepartment();
+
+
+        User isEmailExist = userRepository.findByEmail(email);
+
+        // Check if user with the given email already exists
+        if (isEmailExist != null) {
+>>>>>>> EmployeeControllerNew
             // System.out.println("--------- exist "+isEmailExist).getEmail());
 
             throw new UserException("Email Is Already Used With Another Account");
         }
 
         // Create new user
+<<<<<<< HEAD
         User createdUser= new User();
+=======
+        User createdUser = new User();
+>>>>>>> EmployeeControllerNew
         createdUser.setEmail(email);
         createdUser.setFirstName(firstName);
         createdUser.setLastName(lastName);
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setRole(UserRole.ROLE_EMPLOYEE);
+<<<<<<< HEAD
 
 
 
@@ -85,12 +136,43 @@ public class AuthController {
     }
     @PostMapping("/signup/HR")
     public ResponseEntity<AuthResponse> createUserHandler(@Valid @RequestBody User user) throws UserException {
+=======
+        createdUser.setMobile(mobile);
+        createdUser.setAddresses(address);
+        createdUser.setPosition(position);
+        createdUser.setDepartment(department);
+
+
+        User savedUser = userRepository.save(createdUser);
+
+
+        Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        AuthResponse authResponse = new AuthResponse(token, true);
+
+        return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/signup/HR")
+    public ResponseEntity<AuthResponse> createHRHandler(@Valid @RequestBody User user) throws UserException {
+>>>>>>> EmployeeControllerNew
 
         String email = user.getEmail();
         String password = user.getPassword();
         String firstName=user.getFirstName();
         String lastName=user.getLastName();
         UserRole userRole = UserRole.ROLE_HR;
+<<<<<<< HEAD
+=======
+        String mobile = user.getMobile();
+        List<Address> address = user.getAddresses();
+        Position position = user.getPosition();
+        Department department = user.getDepartment();
+>>>>>>> EmployeeControllerNew
 
         User isEmailExist=userRepository.findByEmail(email);
 
@@ -108,12 +190,23 @@ public class AuthController {
         createdUser.setLastName(lastName);
         createdUser.setPassword(passwordEncoder.encode(password));
         createdUser.setRole(UserRole.ROLE_HR);
+<<<<<<< HEAD
+=======
+        createdUser.setMobile(mobile);
+        createdUser.setAddresses(address);
+        createdUser.setPosition(position);
+        createdUser.setDepartment(department);
+>>>>>>> EmployeeControllerNew
 
 
 
         User savedUser= userRepository.save(createdUser);
 
+<<<<<<< HEAD
         //cartService.createCart(savedUser);
+=======
+
+>>>>>>> EmployeeControllerNew
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(email, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -125,6 +218,7 @@ public class AuthController {
         return new ResponseEntity<AuthResponse>(authResponse, HttpStatus.OK);
 
     }
+<<<<<<< HEAD
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getEmail();
@@ -161,6 +255,8 @@ public class AuthController {
         }
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
+=======
+>>>>>>> EmployeeControllerNew
 
 }
 

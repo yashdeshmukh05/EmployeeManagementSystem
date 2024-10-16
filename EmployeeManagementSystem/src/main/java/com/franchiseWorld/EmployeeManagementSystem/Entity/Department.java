@@ -11,11 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Department {
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-=======
     @GeneratedValue(strategy = GenerationType.AUTO)
->>>>>>> EmployeeControllerNew
     private int id;
 
     @Column(name = "Dept_Name")

@@ -9,16 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
+public class Position {
+
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-=======
     @GeneratedValue(strategy = GenerationType.AUTO)
->>>>>>> EmployeeControllerNew
     private int id;
 
-    @Column(name = "Dept_Name")
-    private String dept_Name;
-
+    @Column(name= "position_name")
+    private String position_name;
 }

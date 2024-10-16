@@ -12,7 +12,11 @@ import lombok.NoArgsConstructor;
 public class Position {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+=======
+    @GeneratedValue(strategy = GenerationType.AUTO)
+>>>>>>> EmployeeControllerNew
     private int id;
 
     @Column(name= "position_name")
