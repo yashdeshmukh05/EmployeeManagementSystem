@@ -1,4 +1,4 @@
-package com.franchiseWorld.EmployeeManagementSystem.repository;
+package com.franchiseWorld.EmployeeManagementSystem.Repository;
 
 import java.util.List;
 

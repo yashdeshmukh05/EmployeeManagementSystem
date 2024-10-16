@@ -1,4 +1,4 @@
-package com.franchiseWorld.EmployeeManagementSystem.services.exception;
+package com.franchiseWorld.EmployeeManagementSystem.Exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 	public ResourceNotFoundException(String message) {

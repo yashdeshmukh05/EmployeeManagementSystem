@@ -1,5 +1,6 @@
 package com.franchiseWorld.EmployeeManagementSystem.controller;
 
+import com.franchiseWorld.EmployeeManagementSystem.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 
-import com.franchiseWorld.EmployeeManagementSystem.services.EmployeeService;
+
 
 
 

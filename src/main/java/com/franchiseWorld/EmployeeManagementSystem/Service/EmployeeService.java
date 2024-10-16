@@ -1,7 +1,11 @@
-package com.franchiseWorld.EmployeeManagementSystem.services;
+package com.franchiseWorld.EmployeeManagementSystem.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.franchiseWorld.EmployeeManagementSystem.Exception.ResourceNotFoundException;
+import com.franchiseWorld.EmployeeManagementSystem.Repository.TaskRepository;
+import com.franchiseWorld.EmployeeManagementSystem.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +13,6 @@ import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 
 
-import com.franchiseWorld.EmployeeManagementSystem.repository.TaskRepository;
-import com.franchiseWorld.EmployeeManagementSystem.repository.UserRepository;
-import com.franchiseWorld.EmployeeManagementSystem.services.exception.ResourceNotFoundException;
 
 @Service
 public class EmployeeService {

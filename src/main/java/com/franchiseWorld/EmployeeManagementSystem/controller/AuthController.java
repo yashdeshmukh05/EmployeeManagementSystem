@@ -1,7 +1,7 @@
-package com.franchiseWorld.EmployeeManagementSystem.LoginRegister;
+package com.franchiseWorld.EmployeeManagementSystem.controller;
 
 import com.franchiseWorld.EmployeeManagementSystem.Config.JwtTokenProvider;
-import com.franchiseWorld.EmployeeManagementSystem.Controller.LoginRequest;
+import com.franchiseWorld.EmployeeManagementSystem.Request.LoginRequest;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.*;
 import com.franchiseWorld.EmployeeManagementSystem.Exception.UserException;
 import com.franchiseWorld.EmployeeManagementSystem.Repository.UserRepository;
@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
