@@ -13,8 +13,6 @@ import com.franchiseWorld.EmployeeManagementSystem.Response.ResponseStructure;
 @RestControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler{
 
-	
-
 	@ExceptionHandler(NoUserPresentException.class)
 	public ResponseEntity<ResponseStructure<String>> handleIdNotFoundException(NoUserPresentException ex) {
 		ResponseStructure<String> structure=new ResponseStructure<String>();
