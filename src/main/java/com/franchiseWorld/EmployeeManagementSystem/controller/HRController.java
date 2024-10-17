@@ -17,44 +17,35 @@ public class HRController {
     @Autowired
     private HRService hrService;
 
-    //find employee id or name API
-    @GetMapping("/user/{identifier}")
-    public ResponseEntity<User> findUserByIdOrName(@PathVariable String name,Long id) {
-        User employee = hrService.findUserByIdOrName(name, id);
-        return ResponseEntity.ok(employee);
-    }
-    //View All Employee API
     @GetMapping("/users")
-    public ResponseEntity<List<User>> viewUserList() {
-        List<User> employees = hrService.viewUserList();
-        return ResponseEntity.ok(employees);
+    public List<User> viewUserList() {
+        return hrService.getAllUsers();
     }
 
-    //Update Attendance API
-    @PutMapping("/attendance/{employeeId}")
-    public ResponseEntity<Void> updateAttendance(@PathVariable Long employeeId, @RequestBody Attendance attendance) {
-        hrService.updateAttendance(employeeId, attendance);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/user/{id}")
+    public User findUserById(@PathVariable Long id) {
+        return hrService.getUserById(id);
     }
 
-    //Update Task API
-    @PostMapping("/task/{employeeId}")
-    public ResponseEntity<Void> updateTask(@PathVariable Long employeeId, @RequestBody Task task) {
-        hrService.updateTask(employeeId, task);
-        return ResponseEntity.noContent().build();
+    @PutMapping("/user/{id}/attendance")
+    public void updateAttendance(@PathVariable Long id, @RequestBody Attendance attendance) {
+        hrService.updateAttendance(id, attendance);
     }
 
-    //Update Salary API
-    @PutMapping("/salary/{employeeId}")
-    public ResponseEntity<Void> updateSalary(@PathVariable Long employeeId, @RequestBody Long salary) {
-        hrService.updateSalary(employeeId, salary);
-        return ResponseEntity.noContent().build();
+    @PutMapping("/user/{id}/task")
+    public void updateTaskProgress(@PathVariable Long id, @RequestBody Task taskProgress) {
+        hrService.updateTask(id, taskProgress);
     }
 
-    //See Employee Task is Progress
-    @GetMapping("/taskProgress/{employeeId}")
-    public ResponseEntity<List<Task>> seeEmpTaskProgress(@PathVariable Long employeeId) {
-        List<Task> taskProgressList = hrService.seeEmpTaskProgress(employeeId);
-        return ResponseEntity.ok(taskProgressList);
+    @PutMapping("/{id}/salary")
+    public ResponseEntity<Void> updateSalary(@PathVariable Long id, @RequestBody Long newSalary) {
+        hrService.updateSalary(id, newSalary);
+        return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping("/task/{id}/progress")
+    public ResponseEntity<Task> seeEmpTaskProgress(@PathVariable Long id) {
+        return ResponseEntity.ok(hrService.seeEmpTaskProgress(id));
     }
 }
