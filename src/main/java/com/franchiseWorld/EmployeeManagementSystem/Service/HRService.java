@@ -1,11 +1,12 @@
 package com.franchiseWorld.EmployeeManagementSystem.Service;
 
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Attendance;
+import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 import com.franchiseWorld.EmployeeManagementSystem.Repository.HRRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class HRService {
 
     public void updateTask(Long userId, Task task) {
         User user = hrRepository.findById(userId).orElseThrow(() -> new RuntimeException("Employee not found"));
-        user.getTasks().add(task);
+        user.getTasks();
         hrRepository.save(user);
     }
 
