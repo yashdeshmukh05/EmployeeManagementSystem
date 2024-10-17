@@ -38,11 +38,12 @@ import java.util.List;
 
         private Long salary;
 
-        @OneToOne
-        private Position position_id;
 
-        @OneToOne
-        private Department Department_id ;
+        @ManyToOne
+        private Position position;
+
+        @ManyToOne
+        private Department department;
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Address> addresses = new ArrayList<>();
@@ -50,7 +51,8 @@ import java.util.List;
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Attendance> attendaces = new ArrayList<>();
 
-        public <E> List<E> getTasks() {
-            return List.of();
-        }
+
+        @OneToMany(mappedBy = "user")
+        private List<Task> tasks;
+
     }

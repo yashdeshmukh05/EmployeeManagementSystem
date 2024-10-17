@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 @ComponentScan(basePackages = "com.franchiseWorld") // Package containing your controllers, services, and repositories
-//@EntityScan(basePackages = "com.pheonix.UserAuthentication") // Package containing your entity classes
+@EntityScan(basePackages = "com.franchiseWorld.EmployeeManagementSystem.Entity") // Package containing your entity classes
 public class AppConfig {
 
     @Bean
@@ -28,7 +28,8 @@ public class AppConfig {
                         // the application will operate in stateless mode, meaning each request will need to carry its authentication information
                 )
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN") // role based authorization
+                        .requestMatchers("/api/admin/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/api/hr/**").hasAuthority("ROLE_HR")// role based authorization
                         .requestMatchers("/api/**").authenticated()
                         .anyRequest().permitAll()
                 )

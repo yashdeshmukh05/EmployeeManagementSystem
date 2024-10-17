@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class Position {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name= "position_name")
