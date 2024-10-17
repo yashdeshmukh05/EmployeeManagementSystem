@@ -49,4 +49,8 @@ import java.util.List;
 
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Attendance> attendaces = new ArrayList<>();
+
+        public <E> List<E> getTasks() {
+            return List.of();
+        }
     }
