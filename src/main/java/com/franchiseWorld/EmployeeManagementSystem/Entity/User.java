@@ -51,6 +51,8 @@ import java.util.List;
         @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Attendance> attendaces = new ArrayList<>();
 
+
         @OneToMany(mappedBy = "user")
         private List<Task> tasks;
+
     }
