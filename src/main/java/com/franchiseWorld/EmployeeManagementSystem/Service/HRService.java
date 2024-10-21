@@ -50,8 +50,8 @@ public class HRService {
 
 
 
-    public void updateTask(Long employeeId, Task task) {
-        Optional<User> user = userRepository.findById(employeeId);
+    public void updateTask(Long userId, Task task) {
+        Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
             task.setUser(user.get());
             taskRepository.save(task);
@@ -73,4 +73,6 @@ public class HRService {
     public Task seeEmpTaskProgress(Long taskId) {
         return taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
     }
+
+
 }

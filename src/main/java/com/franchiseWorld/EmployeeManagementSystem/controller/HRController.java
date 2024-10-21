@@ -1,11 +1,12 @@
 package com.franchiseWorld.EmployeeManagementSystem.controller;
 
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Attendance;
+import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 import com.franchiseWorld.EmployeeManagementSystem.Service.HRService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/hr")
 public class HRController {
+
 
     @Autowired
     private HRService hrService;
@@ -33,8 +35,8 @@ public class HRController {
     }
 
     @PutMapping("/user/{id}/task")
-    public void updateTaskProgress(@PathVariable Long id, @RequestBody Task taskProgress) {
-        hrService.updateTask(id, taskProgress);
+    public void updateTaskProgress(@PathVariable Long id, @RequestBody Task task) {
+        hrService.updateTask(id, task);
     }
 
     @PutMapping("/{id}/salary")
@@ -45,7 +47,7 @@ public class HRController {
 
 
     @GetMapping("/task/{id}/progress")
-    public ResponseEntity<Task> seeEmpTaskProgress(@PathVariable Long id) {
+    public ResponseEntity<com.franchiseWorld.EmployeeManagementSystem.Entity.Task> seeEmpTaskProgress(@PathVariable Long id) {
         return ResponseEntity.ok(hrService.seeEmpTaskProgress(id));
     }
 }
