@@ -51,12 +51,13 @@ public class HRService {
 
 
     public void updateTask(Long userId, Task task) {
+
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
             task.setUser(user.get());
             taskRepository.save(task);
         }
-    }
+
 
 
     public void updateSalary(Long userId, Long newSalary) {
