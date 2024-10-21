@@ -126,13 +126,59 @@ public class AuthController {
         return new ResponseEntity<String>("SuccessFully Created", HttpStatus.OK);
 
     }
+    @PostMapping("/signup/Admin")
+    public ResponseEntity<String> createAdminHandler(@Valid @RequestBody User user) throws UserException {
+
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String firstName=user.getFirstName();
+        String lastName=user.getLastName();
+        UserRole userRole = UserRole.ROLE_ADMIN;
+
+
+
+        User isEmailExist=userRepository.findByEmail(email);
+
+        // Check if user with the given email already exists
+        if (isEmailExist!=null) {
+            // System.out.println("--------- exist "+isEmailExist).getEmail());
+
+            throw new UserException("Email Is Already Used With Another Account");
+        }
+
+        // Create new user
+
+
+
+        User createdUser = new User();
+
+        createdUser.setEmail(email);
+        createdUser.setFirstName(firstName);
+        createdUser.setLastName(lastName);
+        createdUser.setPassword(passwordEncoder.encode(password));
+        createdUser.setRole(UserRole.ROLE_ADMIN);
+
+
+
+
+
+
+        User savedUser= userRepository.save(createdUser);
+
+
+
+        return new ResponseEntity<>("Successfully Created", HttpStatus.OK);
+
+    }
+
+
 
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody LoginRequest loginRequest) {
         String username = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
-        System.out.println(username +" ----- "+password);
+        System.out.println(username +" is Login");
 
         Authentication authentication = authenticate(username, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);

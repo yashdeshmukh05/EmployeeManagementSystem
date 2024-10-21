@@ -2,6 +2,7 @@ package com.franchiseWorld.EmployeeManagementSystem.Entity;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 
 import jakarta.persistence.Column;
@@ -33,5 +34,6 @@ public class Task {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 }

@@ -19,7 +19,7 @@ public class HRController {
     private HRService hrService;
 
     //find employee id or name API
-    @GetMapping("/user/{identifier}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<User> findUserByIdOrName(@PathVariable String name,Long id) {
         User employee = hrService.findUserByIdOrName(name, id);
         return ResponseEntity.ok(employee);

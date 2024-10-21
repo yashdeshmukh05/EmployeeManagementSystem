@@ -19,7 +19,7 @@ import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
 
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api/employee")
 public class EmployeeController {
 
 	@Autowired

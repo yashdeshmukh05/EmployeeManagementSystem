@@ -19,7 +19,7 @@ import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
 
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("api/employee/tasks")
 public class TaskController {
 
 	@Autowired
@@ -39,7 +39,7 @@ public class TaskController {
 		return new ResponseEntity<Task>(task, HttpStatus.OK);
 	}
 
-	// create a new task and assign it to a user
+//	  a new task and assign it to a usercreate
 	@PostMapping("/user/{userId}")
 	public ResponseEntity<Task> createTask(@PathVariable Long userId, @RequestBody Task task) {
 		Task createdTask = taskService.createTask(task, userId);
