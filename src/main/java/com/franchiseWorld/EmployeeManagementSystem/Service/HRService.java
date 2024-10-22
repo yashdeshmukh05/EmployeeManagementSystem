@@ -3,13 +3,17 @@ package com.franchiseWorld.EmployeeManagementSystem.Service;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Attendance;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.User;
+import com.franchiseWorld.EmployeeManagementSystem.Repository.AttendanceRepository;
 import com.franchiseWorld.EmployeeManagementSystem.Repository.HRRepository;
+import com.franchiseWorld.EmployeeManagementSystem.Repository.TaskRepository;
+import com.franchiseWorld.EmployeeManagementSystem.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class HRService {
@@ -17,37 +21,63 @@ public class HRService {
     @Autowired
     private HRRepository hrRepository;
 
-    public User findUserByIdOrName(String name,Long id) {
-        return  hrRepository.findByIdOrFirstName(id,name);
-    }
+    @Autowired
+    private UserRepository userRepository;
 
-    public List<User> viewUserList() {
+    @Autowired
+    private TaskRepository taskRepository;
+
+    @Autowired
+    private AttendanceRepository attendanceRepository;
+
+    public List<User> getAllUsers() {
         return hrRepository.findAll();
     }
 
-    public void updateAttendance(Long userId, Attendance attendance) {
-        User user = hrRepository.findById(userId).orElseThrow(() -> new RuntimeException("Employee not found"));
-        user.setAttendaces((List<Attendance>) attendance);
-        hrRepository.save(user);
+    public User getUserById(Long id) {
+        return hrRepository.findById(id).orElse(null);
     }
+
+
+
+    public void updateAttendance(Long userId, Attendance attendance) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            attendance.setAttendace(attendance.isAttendace());
+            attendanceRepository.save(attendance);
+        }
+    }
+
+
 
     public void updateTask(Long userId, Task task) {
-        User user = hrRepository.findById(userId).orElseThrow(() -> new RuntimeException("Employee not found"));
-        user.getTasks();
-        hrRepository.save(user);
-    }
 
-    public void updateSalary(Long userId, Long salary) {
-        User user = hrRepository.findById(userId).orElseThrow(() -> new RuntimeException("Employee not found"));
-        user.setSalary(salary);
-        hrRepository.save(user);
-    }
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            task.setUser(user.get());
+            taskRepository.save(task);
+        }
 
-    public List<Task> seeEmpTaskProgress(Long employeeId) {
-        User user = hrRepository.findById(employeeId)
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
-        return user.getTasks();
     }
 
 
-}
+
+        public void updateSalary(Long userId, Long newSalary) {
+            Optional<User> user = userRepository.findById(userId);
+            if (user.isPresent()) {
+                User user1 = user.get();
+                user1.setSalary(newSalary);
+                userRepository.save(user1);
+            }
+        }
+
+
+
+
+        //
+        public Task seeEmpTaskProgress(Long taskId) {
+            return taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("Task not found"));
+        }
+
+
+    }
