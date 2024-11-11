@@ -1,4 +1,4 @@
-package com.franchiseWorld.EmployeeManagementSystem.Service;
+hupackage com.franchiseWorld.EmployeeManagementSystem.Service;
 
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Attendance;
 import com.franchiseWorld.EmployeeManagementSystem.Entity.Task;
@@ -69,9 +69,14 @@ public class HRService {
                 user1.setSalary(newSalary);
                 userRepository.save(user1);
             }
-        }
+        
+}
 
 
+public void delete Employee(Long id){
+
+userrepsoitory.deleteById(id);
+}
 
 
         //
